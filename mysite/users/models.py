@@ -24,7 +24,8 @@ class User(AbstractUser):
     # Fixed format of mobile like 1234567890
     message = 'Phone number should be of 10 digits'
     phone_regex = RegexValidator(regex=r'^[1-9][0-9]{9}$', message=message)
-    mobile = models.CharField(validators=[phone_regex], pk=True)
+    mobile = models.CharField(validators=[phone_regex], primary_key=True,
+                              max_length=10)
     photo = models.FileField(upload_to=path)
     bio = models.TextField(max_length=200)
     skills = models.ManyToManyField(Skill)
